@@ -1,10 +1,10 @@
 export width, height, maxwidth, minwidth, maxheight, minheight,
        boxsize, hbox, vbox, hskip, vskip, floating, wrap, pad,
        padinner, alignitems, aligncontent, justifycontent, clip,
-       alignself, floating
+       container, alignself, floating
 
-for (fn, prop) in [:width => :width,
-                   :height => :height,
+for (fn, prop) in [:width => "width",
+                   :height => "height",
                    :minwidth => "min-width",
                    :maxwidth => "max-width",
                    :minheight => "min-height",

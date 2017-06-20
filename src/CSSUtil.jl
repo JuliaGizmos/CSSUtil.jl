@@ -7,6 +7,7 @@ using JSON
 import WebIO: render, Node
 
 using Measures
+using Colors
 
 function style(dict::Dict)
     Dict(:style=>dict)
@@ -24,8 +25,12 @@ function style(elem, p::Pair...)
     render(elem)(style(p...))
 end
 
-function style(::Void, arg...)
+function style(::Void, arg::Pair...)
     style(arg...)
+end
+
+function style(::Void, arg::Dict)
+    style(arg)
 end
 
 const empty = dom"div"()
@@ -54,6 +59,7 @@ const cent = Length(:cent, 1.0)
 
 JSON.lower{u}(l::Length{u}) = "$(l.value)$u"
 JSON.lower(l::Length{:cent}) = "$(l.value)%"
+JSON.lower(c::Color) = "#$(hex(c))"
 
 function assertoneof(x, xs, name="argument")
     if !(string(x) in xs)
@@ -62,5 +68,6 @@ function assertoneof(x, xs, name="argument")
 end
 
 include("layout.jl")
+include("theme.jl")
 
 end # module
