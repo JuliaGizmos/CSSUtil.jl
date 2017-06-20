@@ -21,7 +21,7 @@ function style(elem, dict::Dict)
 end
 
 function style(elem, p::Pair...)
-    style(elem, style(p...))
+    render(elem)(style(p...))
 end
 
 function style(::Void, arg...)
