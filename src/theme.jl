@@ -1,4 +1,5 @@
-export border, borderstyle, bordercolor, borderwidth, hline, vline
+export border, borderstyle, bordercolor, borderwidth, hline, vline,
+       fontweight
 
 function _border_prefix(side::Union{Symbol, String})
     assertoneof(side, ["top", "bottom", "left", "right"], "side")
@@ -41,4 +42,8 @@ end
 
 function vline(; style="solid", w=1px, color="#dedede")
     border("left", style, w, color, alignself("stretch", empty))
+end
+
+function fontweight(weight, elem=nothing)
+    style(elem, "fontWeight" => weight)
 end

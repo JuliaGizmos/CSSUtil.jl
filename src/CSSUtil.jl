@@ -1,6 +1,9 @@
 module CSSUtil
 
+import Base: @md_str
+
 export style, empty
+export @md_str
 
 using WebIO
 using JSON
@@ -69,5 +72,6 @@ end
 
 include("layout.jl")
 include("theme.jl")
+include("markdown.jl")
 
 end # module
