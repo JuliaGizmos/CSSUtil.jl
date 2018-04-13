@@ -36,10 +36,34 @@ function borderwidth(side::Union{Symbol, String}, width, elem=nothing)
     style(elem, _border_prefix(side) * "Width" => width)
 end
 
+"""
+    hline()
+
+    Draw a horizonal line. 
+
+Keyword Arguments:
+=================
+ - style: Indicates whether line should be solid or dotted. 
+Defaults to "solid"
+- w: Specifies line width. Defaults to 1px
+- color: specifies color in hex code RGB. Defaults to "#dedede".
+"""
 function hline(; style="solid", w=1px, color="#dedede")
     border("bottom", style, w, color, alignself("stretch", empty))
 end
 
+"""
+    vline()
+
+    Draw a vertical line. 
+
+Keyword Arguments:
+=================
+ - style: Indicates whether line should be solid or dotted. 
+Defaults to "solid"
+- w: Specifies line width. Defaults to 1px
+- color: specifies color in hex code RGB. Defaults to "#dedede".
+"""
 function vline(; style="solid", w=1px, color="#dedede")
     border("left", style, w, color, alignself("stretch", empty))
 end
