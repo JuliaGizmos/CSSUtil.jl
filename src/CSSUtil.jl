@@ -60,7 +60,7 @@ const vmin = Length(:vmin, 1.0)
 "1% length"
 const cent = Length(:cent, 1.0)
 
-JSON.lower{u}(l::Length{u}) = "$(l.value)$u"
+JSON.lower(l::Length{u}) where {u} = "$(l.value)$u"
 JSON.lower(l::Length{:cent}) = "$(l.value)%"
 JSON.lower(c::Color) = "#$(hex(c))"
 
