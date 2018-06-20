@@ -12,7 +12,7 @@ inlinenode(x::Node) = x
 blocknode(md::Markdown.MD) = vbox(map(blocknode, md.content))
 inlinenode(x::AbstractString) = x
 
-blocknode{n}(md::Markdown.Header{n}) =
+blocknode(md::Markdown.Header{n}) where {n} =
      dom"h$n"(map(inlinenode, md.text))
 
 inlinenode(md::Markdown.Code) = dom"code"(md.code)
