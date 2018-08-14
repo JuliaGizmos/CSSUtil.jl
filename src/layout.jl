@@ -23,7 +23,7 @@ function flex(elem=nothing)
     style(elem, "display"=>"flex")
 end
 
-function container(xs...)
+function container(xs::AbstractVector)
     dom"div"(xs...)
 end
 

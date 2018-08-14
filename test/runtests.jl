@@ -2,14 +2,21 @@ using CSSUtil
 using WebIO
 using Compat.Test
 
+if isdefined(WebIO, :node) # TODO: remove once a new WebIO tag is in
+    using WebIO: node
+else
+    using WebIO: Node
+    const node = Node
+end
+
 @testset "hbox" begin
     el1 = node(:div, "Hello world!")
     el2 = node(:div, "Goodbye world!")
     box = hbox(el1, el2)
     @test props(box)[:style]["display"] == "flex"
     @test props(box)[:style]["flex-direction"] == "row"
-    @test el1 ∈ children(box)[1]
-    @test el2 ∈ children(box)[1]
+    @test el1 ∈ children(box)
+    @test el2 ∈ children(box)
 end
 
 @testset "vbox" begin
@@ -18,8 +25,8 @@ end
     box = vbox(el1, el2)
     @test props(box)[:style]["display"] == "flex"
     @test props(box)[:style]["flex-direction"] == "column"
-    @test el1 ∈ children(box)[1]
-    @test el2 ∈ children(box)[1]
+    @test el1 ∈ children(box)
+    @test el2 ∈ children(box)
 end
 
 @testset "hline" begin
