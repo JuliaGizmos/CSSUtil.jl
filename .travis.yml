@@ -1,19 +1,23 @@
-# Documentation: http://docs.travis-ci.com/user/languages/julia/
+
+## Documentation: http://docs.travis-ci.com/user/languages/julia/
 language: julia
 os:
   - linux
   - osx
 julia:
-  - release
+  - 0.6
+  - 0.7
+  - 1.0
   - nightly
+matrix:
+  allow_failures:
+  - julia: nightly
+  - julia: 1.0 # for now
+branches:
+  only:
+    - master
+    - /^v[0-9]+\.[0-9]+\.[0-9]+$/ # version tags
 notifications:
   email: false
-# uncomment the following lines to override the default test script
-#script:
-#  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-#  - julia -e 'Pkg.clone(pwd()); Pkg.build("CSSUtil"); Pkg.test("CSSUtil"; coverage=true)'
 after_success:
-  # push coverage results to Coveralls
-  - julia -e 'cd(Pkg.dir("CSSUtil")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
-  # push coverage results to Codecov
-  - julia -e 'cd(Pkg.dir("CSSUtil")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+- julia coverage.jl
