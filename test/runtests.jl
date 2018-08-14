@@ -1,5 +1,35 @@
 using CSSUtil
-using Base.Test
+using WebIO
+using Compat.Test
 
-# write your own tests here
-@test 1 == 1
+@testset "hbox" begin
+    el1 = node(:div, "Hello world!")
+    el2 = node(:div, "Goodbye world!")
+    box = hbox(el1, el2)
+    @test props(box)[:style]["display"] == "flex"
+    @test props(box)[:style]["flex-direction"] == "row"
+    @test el1 ∈ children(box)[1]
+    @test el2 ∈ children(box)[1]
+end
+
+@testset "vbox" begin
+    el1 = node(:div, "Hello world!")
+    el2 = node(:div, "Goodbye world!")
+    box = vbox(el1, el2)
+    @test props(box)[:style]["display"] == "flex"
+    @test props(box)[:style]["flex-direction"] == "column"
+    @test el1 ∈ children(box)[1]
+    @test el2 ∈ children(box)[1]
+end
+
+@testset "hline" begin
+    line = hline()
+    @test haskey(props(line)[:style], "borderBottom")
+    @test props(line)[:style]["align-self"] == "stretch"
+end
+
+@testset "vline" begin
+    line = vline()
+    @test haskey(props(line)[:style], "borderLeft")
+    @test props(line)[:style]["align-self"] == "stretch"
+end
