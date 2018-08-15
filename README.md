@@ -1,15 +1,15 @@
 # CSSUtil
 
 CSSUtil provides utilities to create and align
-various web elements on the DOM. 
+various web elements on the DOM.
 
-## Example Usage 
+## Example Usage
 ```julia
 using WebIO
 using CSSUtil
 
-el1 = Node(:div, "Hello world!")
-el2 = Node(:div, "Goodbye world!")
+el1 = node(:div, "Hello world!")
+el2 = node(:div, "Goodbye world!")
 
 el3 = hbox(el1, el2) # aligns horizontally
 el4 = hline() # draws horizontal line

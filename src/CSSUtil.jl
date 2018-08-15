@@ -1,13 +1,16 @@
 module CSSUtil
 
-import Base: @md_str
+using Compat
+using Compat.Markdown
+
+import Compat.Markdown: @md_str
 
 export style, empty
 export @md_str
 
 using WebIO
 using JSON
-import WebIO: render, Node
+import WebIO: render
 
 using Measures
 using Colors
@@ -28,11 +31,11 @@ function style(elem, p::Pair...)
     render(elem)(style(p...))
 end
 
-function style(::Void, arg::Pair...)
+function style(::Nothing, arg::Pair...)
     style(arg...)
 end
 
-function style(::Void, arg::Dict)
+function style(::Nothing, arg::Dict)
     style(arg)
 end
 

@@ -3,7 +3,7 @@ export border, borderstyle, bordercolor, borderwidth, hline, vline,
 
 function _border_prefix(side::Union{Symbol, String})
     assertoneof(side, ["top", "bottom", "left", "right"], "side")
-    "border$(ucfirst(side))"
+    "border$(uppercasefirst(side))"
 end
 
 function assertstyle(style)
@@ -39,11 +39,11 @@ end
 """
     hline()
 
-    Draw a horizonal line. 
+    Draw a horizonal line.
 
 Keyword Arguments:
 =================
- - style: Indicates whether line should be solid or dotted. 
+ - style: Indicates whether line should be solid or dotted.
 Defaults to "solid"
 - w: Specifies line width. Defaults to 1px
 - color: specifies color in hex code RGB. Defaults to "#dedede".
@@ -55,11 +55,11 @@ end
 """
     vline()
 
-    Draw a vertical line. 
+    Draw a vertical line.
 
 Keyword Arguments:
 =================
- - style: Indicates whether line should be solid or dotted. 
+ - style: Indicates whether line should be solid or dotted.
 Defaults to "solid"
 - w: Specifies line width. Defaults to 1px
 - color: specifies color in hex code RGB. Defaults to "#dedede".
