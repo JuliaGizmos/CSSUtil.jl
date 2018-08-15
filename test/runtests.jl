@@ -2,13 +2,6 @@ using CSSUtil
 using WebIO
 using Compat.Test
 
-if isdefined(WebIO, :node) # TODO: remove once a new WebIO tag is in
-    using WebIO: node
-else
-    using WebIO: Node
-    const node = Node
-end
-
 @testset "hbox" begin
     el1 = node(:div, "Hello world!")
     el2 = node(:div, "Goodbye world!")

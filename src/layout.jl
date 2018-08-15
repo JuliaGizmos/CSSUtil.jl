@@ -27,6 +27,8 @@ function container(xs::AbstractVector)
     dom"div"(xs...)
 end
 
+container(xs...) = container([xs...])
+
 """
     hbox(el...)
 

@@ -10,14 +10,7 @@ export @md_str
 
 using WebIO
 using JSON
-import WebIO: render, Node
-
-if isdefined(WebIO, :node) # TODO: remove once a new WebIO tag is in
-    using WebIO: node
-else
-    using WebIO: Node
-    const node = Node
-end
+import WebIO: render
 
 using Measures
 using Colors
