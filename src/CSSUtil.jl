@@ -1,16 +1,11 @@
 module CSSUtil
 
-using Compat
-using Compat.Markdown
-
-import Compat.Markdown: @md_str
-
-export style, empty
-export @md_str
-
 using WebIO
 using JSON
 import WebIO: render
+
+export style, empty
+export @md_str
 
 using Measures
 using Colors

@@ -1,8 +1,6 @@
-using WebIO
-using CSSUtil
+using Markdown
 
-class(cls) = Dict("className" => cls)
-Base.convert(::Type{Node}, md::Markdown.MD) = blocknode(md)(class("webio-markdown"))
+WebIO.render(md::Markdown.MD) = blocknode(md)
 
 blocknode(x) = convert(Node, x)
 inlinenode(x) = convert(Node, x)
@@ -41,10 +39,14 @@ inlinenode(md::Markdown.Image) = dom"img"(src=md.url, alt=md.alt)
 blocknode(md::Markdown.Image) = dom"img"(src=md.url, alt=md.alt)
 
 function inlinenode(md::Markdown.LaTeX)
-    w = Widget(dependencies=["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js", "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"])
+    imports = ["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js",
+               "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"]
+    w = Scope(imports=imports)
     w(dom"span.katex"(md.formula))(style=Dict("display"=>"inline"))
 end
 function blocknode(md::Markdown.LaTeX)
-    w = Widget(dependencies=["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js", "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"])
+    imports = ["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js",
+               "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"]
+    w = Scope(imports=imports)
     w(dom"div.katex"(md.formula))
 end

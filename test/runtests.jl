@@ -1,6 +1,6 @@
 using CSSUtil
 using WebIO
-using Compat.Test
+using Test
 
 @testset "hbox" begin
     el1 = node(:div, "Hello world!")
