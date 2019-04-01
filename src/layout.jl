@@ -35,7 +35,7 @@ container(xs...) = container([xs...])
     Horizontally align mulitple web components.
 """
 function hbox(elems::AbstractVector)
-    container(map(render, elems))(style("display" => "flex", "flex-direction"=>"row"))
+    container(elems)(style("display" => "flex", "flex-direction"=>"row"))
 end
 hbox(xs...) = hbox([xs...])
 
@@ -45,7 +45,7 @@ hbox(xs...) = hbox([xs...])
     Vertically align mulitple web components.
 """
 function vbox(elems::AbstractVector)
-    container(map(render, elems))(style("display" => "flex", "flex-direction"=>"column"))
+    container(elems)(style("display" => "flex", "flex-direction"=>"column"))
 end
 vbox(xs...) = vbox([xs...])
 

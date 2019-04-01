@@ -23,12 +23,27 @@ function style(p::Pair...)
     style(Dict(p...))
 end
 
+"""
+When a Node's `instanceof` field is set to `Fallthrough()`
+it renders it only child and places it in place of itself
+("splat"s its children with the Node's own siblings)
+
+This is useful when you want to defer rendering an object
+till its parents have been rendered
+"""
+struct Fallthrough
+end
+
+function WebIO.render(n::Node{Fallthrough})
+    WebIO.render(first(children(n)))(props(n))
+end
+
 function style(elem, dict::Dict)
-    render(elem)(style(dict))
+    Node{Fallthrough}(elem)(style(dict))
 end
 
 function style(elem, p::Pair...)
-    render(elem)(style(p...))
+    Node{Fallthrough}(elem)(style(p...))
 end
 
 function style(::Nothing, arg::Pair...)
