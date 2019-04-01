@@ -35,7 +35,7 @@ struct Fallthrough
 end
 
 wrapnode(n::Node) = n
-wrapnode(x) = Node{Fallthrough}(x)
+wrapnode(x) = node(Fallthrough(), x)
 
 function WebIO.render(n::Node{Fallthrough})
     WebIO.render(first(children(n)))(props(n))
