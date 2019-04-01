@@ -2,10 +2,8 @@ using Markdown
 
 WebIO.render(md::Markdown.MD) = blocknode(md)
 
-blocknode(x) = convert(Node, x)
-inlinenode(x) = convert(Node, x)
-blocknode(x::Node) = x
-inlinenode(x::Node) = x
+blocknode(x) = wrapnode(x)
+inlinenode(x) = wrapnode(x)
 
 blocknode(md::Markdown.MD) = vbox(map(blocknode, md.content))
 inlinenode(x::AbstractString) = x
