@@ -32,9 +32,12 @@ end
 wrapnode(n::Node) = n
 wrapnode(x) = node(Fallthrough(), x)
 
-function WebIO.render(n::Node{Fallthrough})
-    WebIO.render(first(children(n)))(props(n))
+function render(n::Node{Fallthrough})
+    inner = render(first(children(n)))
+    inner isa String ? inner : inner(props(n))
 end
+
+JSON.lower(n::Node{Fallthrough}) = JSON.lower(render(n))
 
 function style(elem, dict::Dict)
     wrapnode(elem)(style(dict))
