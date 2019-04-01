@@ -36,15 +36,20 @@ inlinenode(md::Markdown.Link) = node("a", map(inlinenode, md.text)..., href=md.u
 inlinenode(md::Markdown.Image) = node("img", src=md.url, alt=md.alt)
 blocknode(md::Markdown.Image) = node("img", src=md.url, alt=md.alt)
 
+function katexscope(formula, display)
+    imports = ["https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js",
+               "https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css"]
+    s = Scope(imports=imports)
+    formula = strip(formula, '$')
+    onimport(s, js"""function (katex) {
+             katex.render($formula, this.dom, {displayMode: $display})
+             }""")
+    s
+end
+
 function inlinenode(md::Markdown.LaTeX)
-    imports = ["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js",
-               "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"]
-    w = Scope(imports=imports)
-    w(node("span", className="katex", md.formula))(style=Dict("display"=>"inline"))
+    katexscope(md.formula, false)(node("span"))(style("display"=>"inline"))
 end
 function blocknode(md::Markdown.LaTeX)
-    imports = ["https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.js",
-               "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha/katex.min.css"]
-    w = Scope(imports=imports)
-    w(node("div", className="katex", md.formula))
+    katexscope(md.formula, true)(node("div"))
 end
