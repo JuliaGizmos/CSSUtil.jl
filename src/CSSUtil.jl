@@ -34,16 +34,19 @@ till its parents have been rendered
 struct Fallthrough
 end
 
+wrapnode(n::Node) = n
+wrapnode(x) = Node{Fallthrough}(x)
+
 function WebIO.render(n::Node{Fallthrough})
     WebIO.render(first(children(n)))(props(n))
 end
 
 function style(elem, dict::Dict)
-    Node{Fallthrough}(elem)(style(dict))
+    wrapnode(elem)(style(dict))
 end
 
 function style(elem, p::Pair...)
-    Node{Fallthrough}(elem)(style(p...))
+    wrapnode(elem)(style(p...))
 end
 
 function style(::Nothing, arg::Pair...)
