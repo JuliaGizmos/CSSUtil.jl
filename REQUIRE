@@ -1,6 +1,6 @@
-julia 0.6
-Compat 0.61.0 # for uppercasefirst
+julia 1.0
+Markdown
 Measures
 Colors
-WebIO 0.2.6 # for node
+WebIO 0.7
 JSON
