@@ -14,7 +14,7 @@ blocknode(md::Markdown.Header{n}) where {n} =
 inlinenode(md::Markdown.Code) = node("code", md.code)
 
 blocknode(md::Markdown.Code)  =
-    node("pre", md.code...)
+    node("pre", md.code)
 
 blocknode(md::Markdown.BlockQuote) =
     blockquote(map(blocknode, md.content))
