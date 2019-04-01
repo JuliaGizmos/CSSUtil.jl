@@ -49,8 +49,8 @@ function vbox(elems::AbstractVector)
 end
 vbox(xs...) = vbox([xs...])
 
-hskip(x) = boxsize(x, 0px, empty)
-vskip(y) = boxsize(0px, y, empty)
+hskip(x) = boxsize(x, 0px, empty())
+vskip(y) = boxsize(0px, y, empty())
 
 function wrap(elem=nothing; reverse=false)
     style(elem, "flex-wrap" => reverse ? "wrap-reverse" : "wrap")

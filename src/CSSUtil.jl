@@ -54,7 +54,7 @@ function style(::Nothing, arg::Dict)
     style(arg)
 end
 
-const empty = dom"div"()
+empty() = dom"div"()
 
 export mm, em, cm, inch, pt, px, vw, vh, vmin, cent
 "1mm"
