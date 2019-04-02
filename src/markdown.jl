@@ -5,7 +5,7 @@ WebIO.render(md::Markdown.MD) = blocknode(md)
 blocknode(x) = wrapnode(x)
 inlinenode(x) = wrapnode(x)
 
-blocknode(md::Markdown.MD) = vbox(map(blocknode, md.content))
+blocknode(md::Markdown.MD) = vbox(map(blocknode, md.content))(className="jl-markdown")
 inlinenode(x::AbstractString) = x
 
 blocknode(md::Markdown.Header{n}) where {n} =
