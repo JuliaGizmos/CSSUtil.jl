@@ -48,7 +48,7 @@ function katexscope(formula, display)
 end
 
 function inlinenode(md::Markdown.LaTeX)
-    katexscope(md.formula, false)(node("span"))(style("display"=>"inline"))
+    style(katexscope(md.formula, false)(node("span")), Dict("display"=>"inline"))
 end
 function blocknode(md::Markdown.LaTeX)
     katexscope(md.formula, true)(node("div"))

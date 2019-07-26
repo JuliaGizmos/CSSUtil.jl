@@ -89,7 +89,7 @@ function padinner(sides::Union{Vector, Tuple}, length, elem=nothing)
     style(elem, (_pad(side, length) for side in sides)...)
 end
 
-function padinner(length, elem)
+function padinner(length, elem=nothing)
     style(elem, "padding" => length)
 end
 

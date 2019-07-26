@@ -49,7 +49,7 @@ Defaults to "solid"
 - color: specifies color in hex code RGB. Defaults to "#dedede".
 """
 function hline(; style="solid", w=1px, color="#dedede")
-    border("bottom", style, w, color, alignself("stretch", empty))
+    border("bottom", style, w, color, alignself("stretch", empty()))
 end
 
 """
@@ -65,7 +65,7 @@ Defaults to "solid"
 - color: specifies color in hex code RGB. Defaults to "#dedede".
 """
 function vline(; style="solid", w=1px, color="#dedede")
-    border("left", style, w, color, alignself("stretch", empty))
+    border("left", style, w, color, alignself("stretch", empty()))
 end
 
 function fontweight(weight, elem=nothing)
