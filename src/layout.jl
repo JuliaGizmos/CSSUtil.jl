@@ -1,7 +1,7 @@
 export width, height, maxwidth, minwidth, maxheight, minheight,
        boxsize, hbox, vbox, hskip, vskip, floating, wrap, pad,
        padinner, alignitems, aligncontent, justifycontent, clip,
-       container, alignself, floating
+       container, alignself, floating, flex
 
 for (fn, prop) in [:width => "width",
                    :height => "height",

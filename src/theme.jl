@@ -1,5 +1,12 @@
 export border, borderstyle, bordercolor, borderwidth, hline, vline,
-       fontweight
+       fontweight, background
+
+
+# TODO: add more background features
+# maybe a way to load images?
+function background(spec, elem=nothing)
+    style(elem, "background" => spec)
+end
 
 function _border_prefix(side::Union{Symbol, String})
     assertoneof(side, ["top", "bottom", "left", "right"], "side")
