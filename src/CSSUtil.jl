@@ -4,7 +4,7 @@ using WebIO
 using JSON
 import WebIO: render
 
-export style, empty
+export style
 export @md_str
 
 using Measures
