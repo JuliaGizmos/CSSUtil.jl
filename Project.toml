@@ -10,6 +10,7 @@ Measures = "442fdcdd-2543-5da2-b0f3-8c86c306513e"
 WebIO = "0f1e0344-ec1d-5b48-a673-e5cf874b6c29"
 
 [compat]
+julia = "0.7, 1"
 Colors = "0.10, 0.12"
 JSON = "0.20, 0.21"
 Measures = "0.2, 0.3"
